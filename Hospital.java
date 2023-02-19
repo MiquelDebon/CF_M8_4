@@ -9,6 +9,7 @@ public final class Hospital extends Edifici {
 
 
     //Constructor **********************************
+    public Hospital(){}
     public Hospital(String name, int floors, int surface, int numberofPatients) {
         super(name, floors, surface);
         this.numberofPatients = numberofPatients;
@@ -53,12 +54,12 @@ public final class Hospital extends Edifici {
 
 
     public String toString() {
-        return "\n🏥Building " + super.getClass() +
+        return "🏥Building " + super.getClass() +
                 ", named: " + super.getName() +
                 ", has " + super.getFloors() +
                 " floors with " + super.getSurface()  +
-                " quare meteres and " + this.getNumberofPatients() + " number of patients" +
-                "\nThe Hospital has a cost of " + this.costSecurity() ;
+                " quare meteres and " + this.getNumberofPatients() + " number of patients." +
+                " The Hospital has a cost of " + this.costSecurity() ;
     }
 
 }

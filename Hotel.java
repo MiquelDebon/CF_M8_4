@@ -1,6 +1,7 @@
 public final class Hotel extends Edifici{
 
     //Constructors*************************************
+    public Hotel(){}
     public Hotel(String name, int floors, int surface) {
         super(name, floors, surface);
     }
@@ -33,7 +34,7 @@ public final class Hotel extends Edifici{
     }
 
     public String toString(){
-        return String.format("\n🏨This Hotel named %s, has %d m2, %d floors. \nWith a Security cost of %d ",
+        return String.format("🏨This Hotel named %s, has %d m2, %d floors. \nWith a Security cost of %d ",
                 super.getName(), super.getSurface(), super.getFloors(), this.costSecurity());
     }
 

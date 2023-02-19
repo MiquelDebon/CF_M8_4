@@ -6,6 +6,8 @@ public abstract class Edifici {
     private int surface;
 
     //CONSTRUCTOR  ******************************************
+    public Edifici(){}
+
     public Edifici(String name, int floors, int surface){
         this.name = name;
         this.floors = floors;

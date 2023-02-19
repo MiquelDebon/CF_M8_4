@@ -1,5 +1,7 @@
 public final class Cinema extends Edifici {
     //Constructors *************************************
+    public Cinema(){};
+
     public Cinema(String name, int floors, int surface) {
         super(name, floors, surface);
     }
@@ -36,7 +38,7 @@ public final class Cinema extends Edifici {
     }
 
     public String toString() {
-        return "\n🎬Building " + super.getClass() +
+        return "🎬Building " + super.getClass() +
                 ", Name: " + super.getName() +
                 ", floors " + super.getFloors() +
                 ", surface " + super.getSurface() ;

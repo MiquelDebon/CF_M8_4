@@ -2,8 +2,7 @@ import java.util.Scanner;
 
 public final class Hospital extends Edifici {
     //Attribute
-    private int numberofPatients = 0;
-
+    private int numberofPatients;
     static Scanner scan = new Scanner(System.in);
 
 

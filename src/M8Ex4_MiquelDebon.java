@@ -5,10 +5,10 @@ import java.util.Scanner;
 public class M8Ex4_MiquelDebon {
     static Scanner scan = new Scanner(System.in);
     static ArrayList<Edifici> buildingList = new ArrayList<Edifici>();
-    static final String stringAnErrorHasOccur = "❌️ An error has occurred";
-    static final String stringWriteValidValue = "❌ Select a valid value/option";
-    static final String stringNoBuildingYet = "❌ We don't have building yet!";
-    static final String stringNoBuildingWithThisName = "❌We don't have any building with this name";
+    static final String STRING_AN_ERROR_HAS_OCCUR = "❌️ An error has occurred";
+    static final String STRING_WRITE_VALID_VALUE = "❌ Select a valid value/option";
+    static final String STRING_NO_BUILDING_YET = "❌ We don't have building yet!";
+    static final String STRING_NO_BUILDING_WITH_THIS_NAME = "❌We don't have any building with this name";
 
 
     public static void main(String[] args) {
@@ -31,7 +31,7 @@ public class M8Ex4_MiquelDebon {
                     showBuildings();
                     break;
                 default:
-                    System.out.println(stringAnErrorHasOccur);
+                    System.out.println(STRING_AN_ERROR_HAS_OCCUR);
             }
         }while(!exitGame);
 
@@ -56,7 +56,7 @@ public class M8Ex4_MiquelDebon {
             selectedOption = inputOutputInt();
 
             if(selectedOption < MINIMO || selectedOption > MAXIMO){
-                System.out.println(stringWriteValidValue);
+                System.out.println(STRING_WRITE_VALID_VALUE);
             }else{
                 rightInt = true;
             }
@@ -84,7 +84,7 @@ public class M8Ex4_MiquelDebon {
             if(elecction > 0 && elecction < 4){
                 rightSelection = true;
             }else{
-                System.out.println(stringWriteValidValue);
+                System.out.println(STRING_WRITE_VALID_VALUE);
             }
         }while(!rightSelection);
 
@@ -115,7 +115,7 @@ public class M8Ex4_MiquelDebon {
                 break;
 
             default:
-                System.out.println(stringAnErrorHasOccur);
+                System.out.println(STRING_AN_ERROR_HAS_OCCUR);
                 break;
         }
         System.out.println();
@@ -144,7 +144,7 @@ public class M8Ex4_MiquelDebon {
                 index = findIndexBuilding(name);
                 existBuilding = (index != -1) ? true : false;
                 if(!existBuilding){
-                    System.out.println(stringNoBuildingWithThisName);
+                    System.out.println(STRING_NO_BUILDING_WITH_THIS_NAME);
                 }
             }while(!existBuilding);
 
@@ -158,10 +158,10 @@ public class M8Ex4_MiquelDebon {
                 System.out.printf("The %s '%s' has been remove\n",type, name);
                 System.out.printf("✅ We have correctly delete a building  🏛️%d nº Buildings \n", buildingList.size());
             }else{
-                System.out.println(stringAnErrorHasOccur);
+                System.out.println(STRING_AN_ERROR_HAS_OCCUR);
             }
         }else{
-            System.out.println(stringNoBuildingYet);
+            System.out.println(STRING_NO_BUILDING_YET);
         }
 
         System.out.println();

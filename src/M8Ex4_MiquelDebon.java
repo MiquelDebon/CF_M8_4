@@ -1,14 +1,15 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class M8Ex4_MiquelDebon {
     static Scanner scan = new Scanner(System.in);
     static ArrayList<Edifici> buildingList = new ArrayList<Edifici>();
-    static final String stringAnErrorHasOccur = "❌️An error has occurred";
+    static final String stringAnErrorHasOccur = "❌️ An error has occurred";
     static final String stringWriteValidValue = "❌ Select a valid value/option";
     static final String stringNoBuildingYet = "❌ We don't have building yet!";
+    static final String stringNoBuildingWithThisName = "❌We don't have any building with this name";
+
 
     public static void main(String[] args) {
 
@@ -91,7 +92,7 @@ public class M8Ex4_MiquelDebon {
         switch (elecction){
             case 1: //Hospital
                 System.out.println("☑️Create a Hospital");
-                hospital = (Hospital) questionsToCreatBuilding(elecction);
+                hospital = (Hospital) questionsToCreateBuilding(elecction);
                 buildingList.add(hospital);
                 System.out.println("Summary : " + stringSummaryBuilding());
                 System.out.printf("✅We have correctly created a Hospital   🏛️%d nº Buildings \n", buildingList.size());
@@ -99,7 +100,7 @@ public class M8Ex4_MiquelDebon {
 
             case 2: //Hotel
                 System.out.println("☑️Create a Hotel");
-                hotel = (Hotel)questionsToCreatBuilding(elecction);
+                hotel = (Hotel) questionsToCreateBuilding(elecction);
                 buildingList.add(hotel);
                 System.out.println("Summary : " + stringSummaryBuilding());
                 System.out.printf("✅We have correctly created a Hotel      🏛️%d nº Buildings \n", buildingList.size());
@@ -107,7 +108,7 @@ public class M8Ex4_MiquelDebon {
 
             case 3: //Cinema
                 System.out.println("☑️Create a Cinema");
-                cinema = (Cinema) questionsToCreatBuilding(elecction);
+                cinema = (Cinema) questionsToCreateBuilding(elecction);
                 buildingList.add(cinema);
                 System.out.println("Summary : " + stringSummaryBuilding());
                 System.out.printf("✅We have correctly created a Cinema     🏛️%d nº Buildings \n", buildingList.size());
@@ -127,6 +128,7 @@ public class M8Ex4_MiquelDebon {
         Edifici edifici;
         String type = "";
         boolean existBuilding = false;
+        int index = -1;
         int originalArrayLength = buildingList.size();
         int lastArrayLength = 0;
 
@@ -139,15 +141,16 @@ public class M8Ex4_MiquelDebon {
             do{
                 System.out.print("✏️Which building do you want to delete? ");
                 name = scan.nextLine();
-                existBuilding = existBuilding(name);
+                index = findIndexBuilding(name);
+                existBuilding = (index != -1) ? true : false;
                 if(!existBuilding){
-                    System.out.println(stringWriteValidValue);
+                    System.out.println(stringNoBuildingWithThisName);
                 }
             }while(!existBuilding);
 
-            edifici = buildingList.get(findIndexBuilding(name));
+            edifici = buildingList.get(index);
             type = edifici.getClass().toString();
-            buildingList.remove(findIndexBuilding(name));
+            buildingList.remove(index);
             lastArrayLength = buildingList.size();
 
             if(lastArrayLength == (originalArrayLength-1)){
@@ -180,21 +183,6 @@ public class M8Ex4_MiquelDebon {
 
 
     //⏩Other support Methos  *******************************************
-
-    static boolean existBuilding(String queriedName){
-        boolean existBuilding = false;
-        int index = 0;
-
-        Edifici edifici;
-        while(!existBuilding && (index < buildingList.size())){
-            edifici = buildingList.get(index);
-            if(queriedName.equalsIgnoreCase(edifici.getName())){
-                existBuilding = true;
-            }
-            index++;
-        }
-        return existBuilding;
-    }
 
     static int findIndexBuilding(String queriedName){
         Edifici edifici;
@@ -249,7 +237,7 @@ public class M8Ex4_MiquelDebon {
     }
 
 
-    public static Edifici questionsToCreatBuilding(int election){
+    public static Edifici questionsToCreateBuilding(int election){
         //Attribute
         Hospital hospital;
         Hotel hotel;

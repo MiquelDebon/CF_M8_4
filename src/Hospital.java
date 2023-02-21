@@ -39,18 +39,6 @@ public final class Hospital extends Edifici {
         System.out.printf("%d portions are being given\n", portion);
     }
 
-    public int costSecurity(){
-        //Attribute
-        int resultCost = 0;
-        final int SURFACESECURITY = 1000;  //Hospital and Hotel
-        int amountSecurity = (int)Math.ceil((double)super.getSurface() / SURFACESECURITY);
-        final int PRICE = 1300;
-
-        resultCost = amountSecurity * PRICE;
-
-        return resultCost;
-    }
-
 
     public String toString() {
         return "🏥Building " + super.getClass() +

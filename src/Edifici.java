@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public abstract class Edifici {
+public class Edifici {
     private String name;
     private int floors;
     private int surface;
@@ -56,6 +56,16 @@ public abstract class Edifici {
         return resultTime;
     }
 
-    public abstract int costSecurity();
+    public int costSecurity(){
+        //Attribute
+        int resultCost = 0;
+        final int SURFACESECURITY = 1000;  //Hospital and Hotel
+        int amountSecurity = (int)Math.ceil((double)this.getSurface() / SURFACESECURITY);
+        final int PRICE = 1300;
+
+        resultCost = amountSecurity * PRICE;
+
+        return resultCost;
+    }
 
 }

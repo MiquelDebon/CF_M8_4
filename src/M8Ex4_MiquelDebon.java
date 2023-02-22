@@ -3,7 +3,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class M8Ex4_MiquelDebon {
-    static Scanner scan = new Scanner(System.in);
+    static Scanner scanner = new Scanner(System.in);
     static ArrayList<Edifici> buildingList = new ArrayList<Edifici>();
     static final String STRING_AN_ERROR_HAS_OCCUR = "❌️ An error has occurred";
     static final String STRING_WRITE_VALID_VALUE = "❌ Select a valid value/option";
@@ -30,6 +30,9 @@ public class M8Ex4_MiquelDebon {
                 case 3:
                     showBuildings();
                     break;
+                case 4:
+                    showOneBuilding();
+                    break;
                 default:
                     System.out.println(STRING_AN_ERROR_HAS_OCCUR);
             }
@@ -45,11 +48,12 @@ public class M8Ex4_MiquelDebon {
         boolean rightInt = false;
         int selectedOption = 0;
         final byte MINIMO = 0;
-        final byte MAXIMO = 3;
+        final byte MAXIMO = 4;
 
         System.out.println("_____________________🏛️ Main menu 🏛️___________________ ");
         System.out.println("      1. Create new building     3. Show buildings  ");
-        System.out.println("      2. Delete building         0. Exit the program ");
+        System.out.println("      2. Delete building         4. Show info One building ");
+        System.out.println("                                 0. Exit the program ");
 
         do{
             System.out.print("✏️Write your option(1-4): ");
@@ -140,7 +144,7 @@ public class M8Ex4_MiquelDebon {
             }
             do{
                 System.out.print("✏️Which building do you want to delete? ");
-                name = scan.nextLine();
+                name = scanner.nextLine();
                 index = findIndexBuilding(name);
                 existBuilding = (index != -1) ? true : false;
                 if(!existBuilding){
@@ -180,6 +184,38 @@ public class M8Ex4_MiquelDebon {
         System.out.println();
     }
 
+
+    static void showOneBuilding(){
+        Edifici quereidEdifici;
+        String output = "";
+        String queriedName = "";
+        int indexqueriedBuilding = -1;
+        boolean buildingExist = false;
+
+        System.out.println("☑️Option 4 - View one buildings ");
+        for(Edifici edifici : buildingList){
+            output += String.format("  '%s'", edifici.getName());
+        }
+
+        do{
+            System.out.print("white the building name ✏️: ");
+            queriedName = scanner.nextLine();
+
+            indexqueriedBuilding = findIndexBuilding(queriedName);
+            buildingExist  = (indexqueriedBuilding != -1) ? true : false;
+            if(!buildingExist){
+                System.out.println("Error");
+            }
+        }while(!buildingExist);
+
+        quereidEdifici = buildingList.get(indexqueriedBuilding);
+
+        System.out.println(quereidEdifici);
+
+        System.out.println("✅ We have correctly printed the information of buildings " + quereidEdifici.getName());
+        System.out.println();
+
+    }
 
 
     //⏩Other support Methos  *******************************************
@@ -226,44 +262,46 @@ public class M8Ex4_MiquelDebon {
 
         do {
             try {
-                numero = scan.nextInt();
+                numero = scanner.nextInt();
                 correcto = true;
             } catch (InputMismatchException ex) {
                 System.out.print("❌ Select a valid value ✏️: ");
             }
-            scan.nextLine();
+            scanner.nextLine();
         } while (!correcto);
         return numero;
     }
 
 
     public static Edifici questionsToCreateBuilding(int election){
-        //Attribute
-        Hospital hospital;
-        Hotel hotel;
-        Cinema cinema;
+        Edifici edifici = null;
+        String nom = "";
+        int numPlantes;
+        int surface;
+        int enfermos = 0;
 
-        int floors = 0, surface =0, numberOfPatients = 0;
-        String name = "";
 
-        System.out.print("✏️Building name: ");
-        name = scan.nextLine();
-        System.out.print("✏️How many floors? ");
-        floors = inputOutputInt();
-        System.out.print("✏️How many m2? ");
-        surface = inputOutputInt();
+        System.out.print("Name  ✏️: ");
+        nom = scanner.nextLine();
+        System.out.print("Floors  ✏️: ");
+        numPlantes = scanner.nextInt();
+        System.out.print("Square meters  ✏️: ");
+        surface = scanner.nextInt();
 
         switch (election){
             case 1:
-                System.out.print("✏️How many patients has the Hospital? ");
-                numberOfPatients = inputOutputInt();
-                return hospital = new Hospital(name, floors, surface, numberOfPatients);
-            case 2:
-                return hotel = new Hotel(name, floors, surface);
+                System.out.print("Enfermos ✏️: ");
+                enfermos = scanner.nextInt();
+                edifici = new Hospital(nom, numPlantes, surface, enfermos);
+                break;
             case 3:
-                return cinema = new Cinema(name, floors, surface);
+                edifici = new Cinema(nom, numPlantes, surface);
+                break;
+            case 2:
+                edifici= new Hotel(nom, numPlantes, surface);
+                break;
         }
-        return null;
+        return edifici;
     }
 
 

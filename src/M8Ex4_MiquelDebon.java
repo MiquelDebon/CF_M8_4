@@ -74,15 +74,15 @@ public class M8Ex4_MiquelDebon {
         //Attribute
         int elecction = 0;
         boolean rightSelection = false;
-        Hospital hospital;
-        Hotel hotel;
-        Cinema cinema;
+        Hospital hospital = null;
+        Hotel hotel = null ;
+        Cinema cinema = null;
 
         System.out.println("☑️Option 1 - Create building");
         System.out.println("You can create these buildings:");
         System.out.println("    1.Hospital    2.Hotel     3.Cinema ");
 
-        do{
+        do{ //Ask while user doesn't write an exiting building
             System.out.print("✏️Which building do you want to create (1-4)? ");
             elecction = inputOutputInt();
             if(elecction > 0 && elecction < 4){
@@ -91,7 +91,6 @@ public class M8Ex4_MiquelDebon {
                 System.out.println(STRING_WRITE_VALID_VALUE);
             }
         }while(!rightSelection);
-
 
         switch (elecction){
             case 1: //Hospital
@@ -167,9 +166,7 @@ public class M8Ex4_MiquelDebon {
         }else{
             System.out.println(STRING_NO_BUILDING_YET);
         }
-
         System.out.println();
-
     }
 
 
@@ -211,9 +208,9 @@ public class M8Ex4_MiquelDebon {
 
         quereidEdifici = buildingList.get(indexqueriedBuilding);
 
-
         System.out.println(quereidEdifici);//General method
 
+        //TODO: duda si es correcto usar "instanceof"
         if(quereidEdifici instanceof Hospital){
             System.out.println(((Hospital)(quereidEdifici)).feedPatients());
         }else if(quereidEdifici instanceof Hotel){
@@ -260,6 +257,7 @@ public class M8Ex4_MiquelDebon {
 
         for(Edifici edifici : buildingList){
 
+            //TODO: duda si es correcto usar "instanceof"
             if (edifici instanceof Cinema) {
                 ++amountCinema;
             }else if(edifici instanceof Hotel){
@@ -279,6 +277,38 @@ public class M8Ex4_MiquelDebon {
         return String.format(" 🏥 nº%d - 🏨 nº%d - 🎥 mº%d ", amountHospital, amountHotel, amountCinema);
     }
 
+    public static Edifici questionsToCreateBuilding(int election){
+        Edifici edifici = null;
+        String nom = "";
+        int numPlantes;
+        int surface;
+        int enfermos = 0;
+
+
+        System.out.print("Name  ✏️: ");
+        nom = scanner.nextLine();
+        System.out.print("Floors  ✏️: ");
+        numPlantes = inputOutputInt();
+        System.out.print("Square meters  ✏️: ");
+        surface = inputOutputInt();
+
+        switch (election){
+            case 1:
+                System.out.print("Enfermos ✏️: ");
+                enfermos = inputOutputInt();
+                edifici = new Hospital(nom, numPlantes, surface, enfermos);
+                break;
+            case 3:
+                edifici = new Cinema(nom, numPlantes, surface);
+                break;
+            case 2:
+                edifici= new Hotel(nom, numPlantes, surface);
+                break;
+        }
+        return edifici;
+    }
+
+
     static int inputOutputInt() {
         int numero = 0;
         boolean correcto = false;
@@ -293,38 +323,6 @@ public class M8Ex4_MiquelDebon {
             scanner.nextLine();
         } while (!correcto);
         return numero;
-    }
-
-
-    public static Edifici questionsToCreateBuilding(int election){
-        Edifici edifici = null;
-        String nom = "";
-        int numPlantes;
-        int surface;
-        int enfermos = 0;
-
-
-        System.out.print("Name  ✏️: ");
-        nom = scanner.nextLine();
-        System.out.print("Floors  ✏️: ");
-        numPlantes = scanner.nextInt();
-        System.out.print("Square meters  ✏️: ");
-        surface = scanner.nextInt();
-
-        switch (election){
-            case 1:
-                System.out.print("Enfermos ✏️: ");
-                enfermos = scanner.nextInt();
-                edifici = new Hospital(nom, numPlantes, surface, enfermos);
-                break;
-            case 3:
-                edifici = new Cinema(nom, numPlantes, surface);
-                break;
-            case 2:
-                edifici= new Hotel(nom, numPlantes, surface);
-                break;
-        }
-        return edifici;
     }
 
 

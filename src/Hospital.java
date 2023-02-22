@@ -40,11 +40,11 @@ public final class Hospital extends Edifici {
 
 
     public String toString() {
-        return "🏥Building " + super.getClass() +
+        return "🏥 This Hospital" +
                 ", named: " + super.getName() +
                 ", has " + super.getFloors() +
                 " floors with " + super.getSurface()  +
-                " quare meteres and " + this.getNumberOfPatients() + " number of patients." +
+                " square meters and " + this.getNumberOfPatients() + " number of patients." +
                 " The Hospital has a cost of " + this.costSecurity() ;
     }
 

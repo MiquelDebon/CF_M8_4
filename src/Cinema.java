@@ -36,7 +36,7 @@ public final class Cinema extends Edifici {
     }
 
     public String toString() {
-        return "🎬Building " + super.getClass() +
+        return "🎬 This Cinema" +
                 ", Name: " + super.getName() +
                 ", floors " + super.getFloors() +
                 ", surface " + super.getSurface() +"m2" ;

@@ -12,7 +12,7 @@ public final class Hotel extends Edifici{
         //Attribute
         int resultCost = 0;
         final int SURFACESECURITY = 1000;
-        int amountSecurity = (int)Math.ceil((double)this.getSurface() / SURFACESECURITY);
+        int amountSecurity = (int)Math.ceil((double)super.getSurface() / SURFACESECURITY);
         final int PRICE = 1300 + 500; //500 Danger plus
 
         resultCost = amountSecurity * PRICE;
@@ -24,7 +24,7 @@ public final class Hotel extends Edifici{
         //Attribute
         String output = "";
         final int ROOMS_X_SERVER = 20;
-        int rooms = this.getSurface() / 25; //each room has 25 m2
+        int rooms = super.getSurface() / 25; //each room has 25 m2
         int amountEmployee = (int)Math.ceil((double)rooms / ROOMS_X_SERVER);
         final int SALARY_EMPLOYEE = 1000;
         int costEmployee = amountEmployee * SALARY_EMPLOYEE;

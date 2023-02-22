@@ -1,13 +1,11 @@
 import java.util.Scanner;
 
 public class Edifici {
-    private String name;
-    private int floors;
-    private int surface;
+    private final String name;
+    private final int floors;
+    private final int surface;
 
     //CONSTRUCTOR  ******************************************
-    public Edifici(){}
-
     public Edifici(String name, int floors, int surface){
         this.name = name;
         this.floors = floors;
@@ -33,11 +31,7 @@ public class Edifici {
                 ", surface " + this.surface ;
     }
 
-    //SETTER ******************************************
-
-    public void setName(String name){
-        this.name = name;
-    }
+    //SETTER - no shan de poder modifica diu l'anunciat ******************************************
 
     //Methods ****************************************
 
@@ -56,7 +50,7 @@ public class Edifici {
         return resultTime;
     }
 
-    public int costSecurity(){
+    public String costSecurity(){
         //Attribute
         int resultCost = 0;
         final int SURFACESECURITY = 1000;  //Hospital and Hotel
@@ -65,7 +59,7 @@ public class Edifici {
 
         resultCost = amountSecurity * PRICE;
 
-        return resultCost;
+        return "Cost of security is " + resultCost +"€";
     }
 
 }

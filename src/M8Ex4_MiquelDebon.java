@@ -196,6 +196,7 @@ public class M8Ex4_MiquelDebon {
         for(Edifici edifici : buildingList){
             output += String.format("  '%s'", edifici.getName());
         }
+        System.out.println(output);
 
         do{
             System.out.print("white the building name ✏️: ");
@@ -204,13 +205,23 @@ public class M8Ex4_MiquelDebon {
             indexqueriedBuilding = findIndexBuilding(queriedName);
             buildingExist  = (indexqueriedBuilding != -1) ? true : false;
             if(!buildingExist){
-                System.out.println("Error");
+                System.out.println(STRING_NO_BUILDING_WITH_THIS_NAME);
             }
         }while(!buildingExist);
 
         quereidEdifici = buildingList.get(indexqueriedBuilding);
 
-        System.out.println(quereidEdifici);
+
+        System.out.println(quereidEdifici);//General method
+
+        if(quereidEdifici instanceof Hospital){
+            System.out.println(((Hospital)(quereidEdifici)).feedPatients());
+        }else if(quereidEdifici instanceof Hotel){
+            System.out.println(((Hotel) quereidEdifici).serviceNumbers());
+        }else{
+            System.out.println(((Cinema) quereidEdifici).costSecurity());
+            System.out.println(((Cinema) quereidEdifici).projectFilm(20, 15));
+        }
 
         System.out.println("✅ We have correctly printed the information of buildings " + quereidEdifici.getName());
         System.out.println();
@@ -243,17 +254,29 @@ public class M8Ex4_MiquelDebon {
         int amountHotel = 0;
         int amountHospital = 0;
 
-        Cinema cinema = new Cinema();
-        Hotel hotel = new Hotel();
-        Hospital hospital = new Hospital();
+        Cinema cinema = null;
+        Hotel hotel = null;
+        Hospital hospital = null;
 
         for(Edifici edifici : buildingList){
-            amountCinema = (edifici.getClass().equals(cinema.getClass())) ? ++amountCinema : amountCinema;
-            amountHotel = (edifici.getClass().equals(hotel.getClass())) ? ++amountHotel : amountHotel;
-            amountHospital = (edifici.getClass().equals(hospital.getClass())) ? ++amountHospital : amountHospital;
+
+            if (edifici instanceof Cinema) {
+                ++amountCinema;
+            }else if(edifici instanceof Hotel){
+                ++amountHotel;
+            }else{
+                ++amountHospital;
+            }
+            //Option2
+//            amountHotel =  edifici instanceof Hotel ? ++amountHotel : amountHotel;
+//            amountHospital = edifici instanceof Hospital ? ++amountHospital : amountHospital;
+            //Option 3
+//            amountCinema = (edifici.getClass().equals(cinema.getClass())) ? ++amountCinema : amountCinema;
+//            amountHotel = (edifici.getClass().equals(hotel.getClass())) ? ++amountHotel : amountHotel;
+//            amountHospital = (edifici.getClass().equals(hospital.getClass())) ? ++amountHospital : amountHospital;
         }
 
-        return String.format("🎥 nº%d - 🏨 nº%d  -  🏥 mº%d ", amountCinema, amountHotel, amountHospital);
+        return String.format(" 🏥 nº%d - 🏨 nº%d - 🎥 mº%d ", amountHospital, amountHotel, amountCinema);
     }
 
     static int inputOutputInt() {

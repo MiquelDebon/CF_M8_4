@@ -2,41 +2,40 @@ import java.util.Scanner;
 
 public final class Hospital extends Edifici {
     //Attribute
-    private int numberofPatients;
+    private int numberOfPatients;
     static Scanner scan = new Scanner(System.in);
 
 
 
     //Constructor **********************************
-    public Hospital(){}
     public Hospital(String name, int floors, int surface, int numberofPatients) {
         super(name, floors, surface);
-        this.numberofPatients = numberofPatients;
+        this.numberOfPatients = numberofPatients;
     }
 
 
 
     //GETTER Methods **********************************
-    public int getNumberofPatients(){
-        return numberofPatients;
+    public int getNumberOfPatients(){
+        return numberOfPatients;
     }
 
     //SETTEr Methods **********************************
-    public void setNumberofPatients(int numberofPatients){
-        this.numberofPatients = numberofPatients;
+    public void setNumberOfPatients(int numberOfPatients){
+        this.numberOfPatients = numberOfPatients;
     }
 
 
     //LOGIC Methods  ****************************************
 
-    public void feedPatients(){
+    public String feedPatients(){
         //Attribute
         int timesperDay = 3;
         int portion = 0;
 
-        portion = this.numberofPatients * timesperDay;
+        portion = this.numberOfPatients * timesperDay;
 
-        System.out.printf("%d portions are being given\n", portion);
+        return String.format("%d portions are being given\n", portion);
     }
 
 
@@ -45,7 +44,7 @@ public final class Hospital extends Edifici {
                 ", named: " + super.getName() +
                 ", has " + super.getFloors() +
                 " floors with " + super.getSurface()  +
-                " quare meteres and " + this.getNumberofPatients() + " number of patients." +
+                " quare meteres and " + this.getNumberOfPatients() + " number of patients." +
                 " The Hospital has a cost of " + this.costSecurity() ;
     }
 

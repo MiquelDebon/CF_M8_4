@@ -56,7 +56,7 @@ public class M8Ex4_MiquelDebon {
         System.out.println("                                 0. Exit the program ");
 
         do{
-            System.out.print("✏️Write your option(1-4): ");
+            System.out.print("✏️Write your option(0-4): ");
             selectedOption = inputOutputInt();
 
             if(selectedOption < MINIMO || selectedOption > MAXIMO){
